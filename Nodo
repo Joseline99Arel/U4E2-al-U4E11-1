@@ -1,0 +1,16 @@
+package Clases;
+public class Nodo 
+{
+    int Año;
+    String Nombre;
+    Nodo Izquierda;
+    Nodo Derecha;
+    
+    public Nodo(String Nombre, int Año)
+    {
+        this.Nombre = Nombre;
+        this.Año = Año;
+        this.Derecha = null;
+        this.Izquierda = null;
+    }
+}
