@@ -85,6 +85,7 @@ public class Main
                         System.out.println("La suma de todas las edades es " + Obj.Suma);
                     break;
                     case 6:
+                        Obj.Suma(Obj.NodoRaiz);
                         Promedio = Obj.Suma / Obj.Total;
                         System.out.println("El promedio de todas las edades de los participante es " + Promedio);
                     break;
