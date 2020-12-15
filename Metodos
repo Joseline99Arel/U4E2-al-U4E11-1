@@ -1,0 +1,122 @@
+package Clases;
+public class Metodos 
+{
+    Nodo NodoPadre = null;
+    Nodo NodoRaiz = null;
+    Nodo Pequeña = null;
+    Nodo Grande = null;
+    int Total = 0, Suma, Edad, Altura;
+    
+    public void Insertar(Nodo NodoActual)
+    {
+        if(NodoPadre == null)
+        {
+            NodoRaiz = NodoActual;
+            NodoPadre = NodoActual;
+            Pequeña = NodoActual;
+            Grande = NodoActual;
+            Total++;
+        }
+        else
+        {
+            if (NodoActual.Año > Pequeña.Año)
+            {
+                Pequeña = NodoActual;
+            }
+            if (NodoActual.Año < Grande.Año)
+            {
+                Grande = NodoActual;
+            }
+            
+            if(NodoActual.Año < NodoPadre.Año)
+            {
+                if (NodoPadre.Izquierda == null)
+                {
+                    NodoPadre.Izquierda = NodoActual;
+                    NodoPadre = NodoRaiz; 
+                    Total++;
+                }
+                else
+                {
+                    NodoPadre = NodoPadre.Izquierda;
+                    Insertar(NodoActual);
+                }
+            }
+            else
+            {
+                if (NodoPadre.Derecha == null)
+                {
+                    NodoPadre.Derecha = NodoActual;
+                    NodoPadre = NodoRaiz; 
+                    Total++;
+                }
+                else
+                {
+                    NodoPadre = NodoPadre.Derecha;
+                    Insertar(NodoActual);
+                }
+            }
+        }
+    }
+    
+    public void inOrden(Nodo Raiz)
+    {
+        if (Raiz!=null)
+        {
+            inOrden(Raiz.Izquierda);
+            System.out.print(Raiz.Nombre + " | ");
+            inOrden(Raiz.Derecha);
+        }
+    }
+    
+    public void preOrden(Nodo Raiz)
+    {
+        if (Raiz!=null)
+        {
+            System.out.print(Raiz.Nombre + " | ");
+            preOrden(Raiz.Izquierda);
+            preOrden(Raiz.Derecha);
+        }
+    }
+    
+    public void postOrden(Nodo Raiz)
+    {
+        if (Raiz!=null)
+        {
+            postOrden(Raiz.Izquierda);
+            postOrden(Raiz.Derecha);
+            System.out.print(Raiz.Nombre + " | ");
+        }
+    }
+    
+    public void Suma(Nodo Raiz)
+    {
+        if (Raiz!=null)
+        {
+            Suma(Raiz.Izquierda);
+            Suma(Raiz.Derecha);
+            Edad = 2020 - Raiz.Año;
+            Suma = Suma + Edad;
+        }
+    }
+    
+    public int Altura()
+    {
+        Altura = 0;
+        Altura(NodoRaiz,0);
+        return Altura;
+    }
+    
+    private void Altura(Nodo Raiz, int Nivel)
+    {
+        if(Raiz != null)
+        {
+            Altura(Raiz.Izquierda, Nivel +1+1);
+            if(Nivel > Altura)
+            {
+                Altura = Nivel;
+            }
+            Altura(Raiz.Derecha, Nivel+1);
+        }
+    }
+}
